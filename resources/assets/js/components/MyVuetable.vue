@@ -20,17 +20,33 @@
                 fields: [
                     {
                         name: 'name',
-                        title: 'Full Name'
+                        title: 'Full Name',
+                        titleClass: 'text-center',
+                        dataClass: 'text-left'
                     },
-                    'email',
-                    'birthday',
+                    {
+                        name: 'email',
+                        title: 'Email',
+                        titleClass: 'text-center',
+                        dataClass: 'text-left'
+                    },
+                    {
+                        name: 'birthday',
+                        title: 'Birthday',
+                        titleClass: 'text-center',
+                        dataClass: 'text-center'
+                    },
                     {
                         name: 'address',
-                        title: 'Home Address'
+                        title: 'Home Address',
+                        titleClass: 'text-center',
+                        dataClass: 'text-left'
                     },
                     {
                         name: 'salary',
-                        title: 'Monthly Salary'
+                        title: 'Monthly Salary',
+                        titleClass: 'text-center',
+                        dataClass: 'text-right'
                     }
                 ]
             }
