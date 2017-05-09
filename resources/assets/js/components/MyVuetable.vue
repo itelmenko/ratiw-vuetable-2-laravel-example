@@ -19,8 +19,8 @@
 
 <script>
 
-    import accounting from 'accounting'
-    import moment from 'moment'
+    import accounting from 'accounting' // for salary field formatting
+    import moment from 'moment' // for birthday field
     import Vuetable from 'vuetable-2/src/components/Vuetable'
     import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
     import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
@@ -66,7 +66,8 @@
                         name: 'birthday',
                         title: 'Birthday',
                         titleClass: 'text-center',
-                        dataClass: 'text-center'
+                        dataClass: 'text-center',
+                        callback: 'formatDate|DD-MM-YYYY'
                     },
                     {
                         name: 'address',
@@ -75,10 +76,17 @@
                         dataClass: 'text-left'
                     },
                     {
+                        name: 'gender',
+                        titleClass: 'text-center',
+                        dataClass: 'text-center',
+                        callback: 'genderLabel'
+                    },
+                    {
                         name: 'salary',
                         title: 'Monthly Salary',
                         titleClass: 'text-center',
-                        dataClass: 'text-right'
+                        dataClass: 'text-right',
+                        callback: 'formatNumber'
                     }
                 ]
             }
@@ -92,6 +100,23 @@
             },
             onChangePage (page) {
                 this.$refs.vuetable.changePage(page)
+            },
+
+            // Column formatting
+            genderLabel (value) {
+                return value === 'male'
+                    ? '<span class="label label-warning"><span class="glyphicon glyphicon-star"></span> Male</span>'
+                    : '<span class="label label-info"><span class="glyphicon glyphicon-heart"></span> Female</span>'
+            },
+
+            formatNumber (value) {
+                return accounting.formatNumber(value, 2)
+            },
+
+            formatDate (value, fmt = 'D MMM YYYY') {
+                return (value == null)
+                    ? ''
+                    : moment(value, 'YYYY-MM-DD').format(fmt)
             }
         }
     }
