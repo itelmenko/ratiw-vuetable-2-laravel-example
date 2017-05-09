@@ -49,20 +49,18 @@
                 font-size: 84px;
             }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
             .m-b-md {
                 margin-bottom: 30px;
             }
         </style>
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <script>
+            window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+            ]); ?>
+        </script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -82,14 +80,13 @@
                     Laravel
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                {{-- Place for Vue-component --}}
+                <div id="app">
+                    <example></example>
                 </div>
+
             </div>
         </div>
+        {{ Html::script(mix('js/app.js')) }}
     </body>
 </html>
