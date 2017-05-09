@@ -77,9 +77,6 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
 
                 {{-- Place for Vue-component --}}
                 <div id="app">
