@@ -3,7 +3,7 @@
 <template>
     <vuetable ref="vuetable"
               api-url="/people"
-              :fields="['name', 'email', 'birthday', 'address', 'salary']"
+              :fields="fields"
     ></vuetable>
 </template>
 
@@ -13,6 +13,27 @@
     export default {
         components: {
             Vuetable
+        },
+
+        data() {
+            return {
+                fields: [
+                    {
+                        name: 'name',
+                        title: 'Full Name'
+                    },
+                    'email',
+                    'birthday',
+                    {
+                        name: 'address',
+                        title: 'Home Address'
+                    },
+                    {
+                        name: 'salary',
+                        title: 'Monthly Salary'
+                    }
+                ]
+            }
         }
     }
 </script>
