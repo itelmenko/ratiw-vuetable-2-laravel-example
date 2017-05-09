@@ -5,10 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css" media="screen" title="no title" charset="utf-8">
 
         <!-- Styles -->
         <style>
@@ -57,9 +58,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <script>
-            window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-            ]); ?>
+            window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
         </script>
     </head>
     <body>
@@ -82,7 +83,7 @@
 
                 {{-- Place for Vue-component --}}
                 <div id="app">
-                    <example></example>
+                    <my-vuetable></my-vuetable>
                 </div>
 
             </div>
