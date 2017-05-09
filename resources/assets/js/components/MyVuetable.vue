@@ -8,6 +8,8 @@
                   pagination-path=""
                   @vuetable:pagination-data="onPaginationData"
         ></vuetable>
+        <vuetable-pagination-info ref="paginationInfo"
+        ></vuetable-pagination-info>
         <vuetable-pagination ref="pagination"
             :css="cssPagination"
             @vuetable-pagination:change-page="onChangePage"
@@ -21,11 +23,13 @@
     import moment from 'moment'
     import Vuetable from 'vuetable-2/src/components/Vuetable'
     import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
+    import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
 
     export default {
         components: {
             Vuetable,
-            VuetablePagination
+            VuetablePagination,
+            VuetablePaginationInfo
         },
 
         data() {
@@ -84,6 +88,7 @@
             //...
             onPaginationData (paginationData) {
                 this.$refs.pagination.setPaginationData(paginationData)
+                this.$refs.paginationInfo.setPaginationData(paginationData)
             },
             onChangePage (page) {
                 this.$refs.vuetable.changePage(page)
