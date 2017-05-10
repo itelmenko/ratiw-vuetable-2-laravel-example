@@ -4,18 +4,43 @@
     <div class="ui container">
         <vuetable ref="vuetable"
                   api-url="/people"
+                  pagination-path=""
                   :fields="fields"
                   :css="css"
-                  pagination-path=""
                   :sort-order="sortOrder"
+                  :per-page="10"
                   @vuetable:pagination-data="onPaginationData"
-        ></vuetable>
+        >
+            // Scoped slots https://vuejs.org/v2/guide/components.html#Scoped-Slots
+            <template slot="actions" scope="props">
+                <div class="custom-actions">
+                    <button class="btn btn-default btn-sm"
+                            @click="onAction('view-item', props.rowData, props.rowIndex)">
+                        <span class="glyphicon glyphicon-zoom-in"></span>
+                    </button>
+                    <button class="btn btn-default btn-sm"
+                            @click="onAction('edit-item', props.rowData, props.rowIndex)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button class="btn btn-default btn-sm"
+                            @click="onAction('delete-item', props.rowData, props.rowIndex)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+            </template>
+
+        </vuetable>
+
+        <button class="btn btn-info" @click="onGroupAction()">Group action</button>
+
         <vuetable-pagination-info ref="paginationInfo"
         ></vuetable-pagination-info>
+
         <vuetable-pagination ref="pagination"
             :css="paginationCss"
             @vuetable-pagination:change-page="onChangePage"
         ></vuetable-pagination>
+
     </div>
 </template>
 
@@ -55,6 +80,17 @@
                 },
 
                 fields: [
+                    {
+                        name: '__sequence',
+                        title: '#',
+                        titleClass: 'text-center',
+                        dataClass: 'text-right'
+                    },
+                    {
+                        name: '__checkbox',
+                        titleClass: 'text-center',
+                        dataClass: 'text-center'
+                    },
                     {
                         name: 'name',
                         title: 'Full Name',
@@ -98,6 +134,12 @@
                         dataClass: 'text-right',
                         callback: 'formatNumber',
                         sortField: 'salary'
+                    },
+                    {
+                        name: '__slot:actions',
+                        title: 'Actions',
+                        titleClass: 'text-center',
+                        dataClass: 'text-center'
                     }
                 ],
 
@@ -136,6 +178,16 @@
                 return (value == null)
                     ? ''
                     : moment(value, 'YYYY-MM-DD').format(fmt)
+            },
+
+            // Row button action handler
+            onAction (action, data, index) {
+                console.log('slot) action: ' + action, data.name, index)
+            },
+
+            // Footer button action
+            onGroupAction() {
+                console.log('Group action. Selected rows: ', this.$refs.vuetable.selectedTo.join(', '));
             }
         }
     }

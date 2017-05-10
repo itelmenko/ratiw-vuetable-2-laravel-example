@@ -20,7 +20,8 @@ Route::get('/', function () {
 Route::get('people', function (Request $request) {
 
     $sortRules = $request->input('sort');
+    $limit = $request->input('per_page');
     list($field, $dir) = explode('|', $sortRules);
-    return App\Models\Person::orderBy($field, $dir)->paginate();
+    return App\Models\Person::orderBy($field, $dir)->paginate($limit);
 
 });
