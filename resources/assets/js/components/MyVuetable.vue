@@ -31,15 +31,17 @@
 
         </vuetable>
 
-        <button class="btn btn-info" @click="onGroupAction()">Group action</button>
+        <div class="vuetable-footer">
+            <button class="btn btn-info footer-button" @click="onGroupAction()">Group action</button>
 
-        <vuetable-pagination-info ref="paginationInfo"
-        ></vuetable-pagination-info>
+            <vuetable-pagination-info ref="paginationInfo"
+            ></vuetable-pagination-info>
 
-        <vuetable-pagination ref="pagination"
-            :css="paginationCss"
-            @vuetable-pagination:change-page="onChangePage"
-        ></vuetable-pagination>
+            <vuetable-pagination ref="pagination"
+                :css="paginationCss"
+                @vuetable-pagination:change-page="onChangePage"
+            ></vuetable-pagination>
+        </div>
 
     </div>
 </template>
@@ -192,3 +194,24 @@
         }
     }
 </script>
+
+<style>
+    .vuetable-footer {
+        height: 40px;
+        margin: 0 0 20px 0;
+    }
+    .vuetable-pagination-info, .footer-button {
+        float: left;
+    }
+    .vuetable-pagination-info {
+        padding: 12px 25px;
+        line-height: 14px;
+    }
+    .pagination {
+        float: right;
+        margin: 0;
+    }
+    .vuetable-footer:after{
+        clear: both;
+    }
+</style>
