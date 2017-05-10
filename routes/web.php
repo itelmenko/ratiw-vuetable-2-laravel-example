@@ -11,10 +11,16 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('people', function () {
-    return App\Models\Person::paginate();
+Route::get('people', function (Request $request) {
+
+    $sortRules = $request->input('sort');
+    list($field, $dir) = explode('|', $sortRules);
+    return App\Models\Person::orderBy($field, $dir)->paginate();
+
 });

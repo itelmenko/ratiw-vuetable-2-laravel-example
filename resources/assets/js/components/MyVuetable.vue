@@ -5,13 +5,15 @@
         <vuetable ref="vuetable"
                   api-url="/people"
                   :fields="fields"
+                  :css="css"
                   pagination-path=""
+                  :sort-order="sortOrder"
                   @vuetable:pagination-data="onPaginationData"
         ></vuetable>
         <vuetable-pagination-info ref="paginationInfo"
         ></vuetable-pagination-info>
         <vuetable-pagination ref="pagination"
-            :css="cssPagination"
+            :css="paginationCss"
             @vuetable-pagination:change-page="onChangePage"
         ></vuetable-pagination>
     </div>
@@ -24,6 +26,7 @@
     import Vuetable from 'vuetable-2/src/components/Vuetable'
     import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
     import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
+    import BootstrapStyle from './bootstrap-css.js'
 
     export default {
         components: {
@@ -35,7 +38,9 @@
         data() {
             return {
 
-                cssPagination: {
+                css: BootstrapStyle,
+
+                paginationCss: {
                     wrapperClass: 'pagination',
                     activeClass: 'btn-primary',
                     disabledClass: 'disabled',
@@ -54,39 +59,53 @@
                         name: 'name',
                         title: 'Full Name',
                         titleClass: 'text-center',
-                        dataClass: 'text-left'
+                        dataClass: 'text-left',
+                        sortField: 'name'
                     },
                     {
                         name: 'email',
                         title: 'Email',
                         titleClass: 'text-center',
-                        dataClass: 'text-left'
+                        dataClass: 'text-left',
+                        sortField: 'email'
                     },
                     {
                         name: 'birthday',
                         title: 'Birthday',
                         titleClass: 'text-center',
                         dataClass: 'text-center',
-                        callback: 'formatDate|DD-MM-YYYY'
+                        callback: 'formatDate|DD-MM-YYYY',
+                        sortField: 'birthday'
                     },
                     {
                         name: 'address',
                         title: 'Home Address',
                         titleClass: 'text-center',
-                        dataClass: 'text-left'
+                        dataClass: 'text-left',
+                        sortField: 'address'
                     },
                     {
                         name: 'gender',
                         titleClass: 'text-center',
                         dataClass: 'text-center',
-                        callback: 'genderLabel'
+                        callback: 'genderLabel',
+                        sortField: 'gender'
                     },
                     {
                         name: 'salary',
                         title: 'Monthly Salary',
                         titleClass: 'text-center',
                         dataClass: 'text-right',
-                        callback: 'formatNumber'
+                        callback: 'formatNumber',
+                        sortField: 'salary'
+                    }
+                ],
+
+                sortOrder: [
+                    {
+                        field: 'name',
+                        sortField: 'name',
+                        direction: 'asc'
                     }
                 ]
             }
