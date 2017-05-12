@@ -131,7 +131,7 @@
                     },
                     {
                         name: 'salary',
-                        title: 'Monthly Salary',
+                        title: 'Salary',
                         titleClass: 'text-center',
                         dataClass: 'text-right',
                         callback: 'formatNumber',
@@ -196,6 +196,20 @@
 </script>
 
 <style>
+
+    /**
+     * Disabling multi-line text
+     */
+    .vuetable-body > tr > td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    /**
+     * Footer
+     */
     .vuetable-footer {
         height: 40px;
         margin: 0 0 20px 0;
