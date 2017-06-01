@@ -206,6 +206,50 @@
         text-overflow: ellipsis;
     }
 
+    /*
+     * Column width
+     */
+    table.vuetable {
+        width: 1140px;
+        table-layout: fixed;
+    }
+
+    .vuetable-th-sequence {
+        width: 35px;
+    }
+
+    .vuetable-th-checkbox-id {
+        width: 25px;
+    }
+
+    .vuetable th#_name {
+        width: 120px;
+    }
+
+    .vuetable th#_email {
+        width: 120px;
+    }
+
+    .vuetable th#_birthday {
+        width: 80px;
+    }
+
+    .vuetable th#_address {
+        width: 200px;
+    }
+
+    .vuetable th#_gender {
+        width: 80px;
+    }
+
+    .vuetable th#_salary {
+        width: 130px;
+    }
+
+    .vuetable .vuetable-th-slot-actions {
+        width: 120px;
+    }
+
 
     /**
      * Footer
